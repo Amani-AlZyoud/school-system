@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>School</title>
+    <title>EGGHEAD SCHOOL</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link href='https://fonts.googleapis.com/css?family=Alatsi' rel='stylesheet'>
     <link href='https://fonts.googleapis.com/css?family=Gloock' rel='stylesheet'>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body style="background-color: #e0c0b57d;">
     
@@ -73,7 +74,7 @@
           </header>
             
           <!-- HERO SECTION -->
-            <div class="row my-5 text-center" id="hero">
+            <div class="row my-5 text-center" id="hero" >
     
                 <h1 class="fw-bold text-dark display-1">Best School<br> Best Students</h1>
                 <div class="col-lg-6 mx-auto">
@@ -99,19 +100,19 @@
 <div class="container">
 
   <!-- SCHOOL SYS FORM -->
-<div class="row">
+<div class="row justify-content-center">
 
-  <div class="col-lg-6 my-5">
+  <div class="col-lg-10 my-5 "  data-aos="fade-down">
     <h1 id="form-h">School system</h1>
     <form  id="contactForm" data-sb-form-api-token="API_TOKEN">
       <div class="form-floating mb-3">
-          <input class="form-control" id="fullName" type="text" placeholder="Full Name" data-sb-validations="required" required/>
+          <input class="form-control" id="fullName" type="text" placeholder="Full Name" data-sb-validations="required" style="text-transform: capitalize;" required/>
           <label for="fullName">Full Name</label>
           <div class="invalid-feedback" data-sb-feedback="fullName:required">Full Name is required.</div>
       </div>
 
       <div class="form-floating mb-3">
-        <input class="form-control" id="dateOfBirth" type="date" placeholder="Date of Birth" min="1960-01-01" data-sb-validations="required" required/>
+        <input class="form-control" id="dateOfBirth" type="date" placeholder="Date of Birth" min="1960-01-01"  data-sb-validations="required" required/>
         <label for="dateOfBirth">Date of Birth</label>
         <div class="invalid-feedback" data-sb-feedback="dateOfBirth:required">Date of Birth is required.</div>
     </div>
@@ -129,22 +130,32 @@
           </div>
       </div>
 
-
-      <div class="form-floating mb-3">
-        <input class="form-control" id="phoneNumber" type="tel" placeholder="Phone Number" pattern="[0]{1}[7]{1}[7-9]{1}[0-9]{7}" data-sb-validations="required" />
-        <label for="phoneNumber">Phone Number</label>
-        <div class="invalid-feedback" data-sb-feedback="phoneNumber:required">Phone Number is required.</div>
+      <div class=" mb-3">
+        <label class="form-label d-block fw-bold">Major</label>
+        <select class="form-select" name="major" id="major" required>
+          <option value="Administration">Administration</option>
+          <option value="IT">IT</option>
+          <option value="Science">Science</option>
+          <option value="Art">Art</option>
+        </select>
     </div>
 
 
 
-      <div class="form-floating mb-3">
-          <input class="form-control" id="grade" type="number" placeholder="Grade" data-sb-validations="required" required/>
-          <label for="grade">Grade</label>
-          <div class="invalid-feedback" data-sb-feedback="grade:required">Grade is required.</div>
-      </div>
+    <div class="form-floating mb-3">
+      <input class="form-control" id="img" type="text" value="https://cdn-icons-png.flaticon.com/512/3068/3068380.png" placeholder="Grade" data-sb-validations="required" required/>
+      <label for="img">Img URL</label>
+      <div class="invalid-feedback" data-sb-feedback="img:required">Img is required.</div>
+  </div>
 
-      
+      <div class="form-floating mb-3">
+        <input class="form-control" id="phoneNumber" type="tel" placeholder="Phone Number" pattern="[0]{1}[7]{1}[7-9]{1}[0-9]{7}" data-sb-validations="required" />
+        <label for="phoneNumber">Phone Number eg. 0775461235</label>
+        <div class="invalid-feedback" data-sb-feedback="phoneNumber:required">Phone Number is required.</div>
+    </div>
+
+
+     
       
       <div class="d-grid">
           <button class="btn btn-outline-dark btn-lg " id="submitButton" type="submit">Submit</button>
@@ -153,7 +164,7 @@
   </div>
 
 <!-- STUDENTS TABLE -->
-  <div class="col-lg-6 my-5" id="divTable">
+  <!-- <div class="col-lg-6 my-5" id="divTable">
     
        <div class="table-responsive-lg" id="tableB">
       <table class="table table-sm table-hover table-bordered " id="stdTable">
@@ -161,14 +172,21 @@
       </table>
    
     </div>
-  </div>
+  </div> -->
 
 </div>
+
 
 
 
 </div>
   
+<div class="container">
+  <div class="row justify-content-center text-center" id="mainSection" data-aos="fade-up"></div>
+</div>
+
+
+
 </main>
 
 
@@ -204,7 +222,10 @@
 
 
 
-    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
     <script src="higherOrderFunction.js"></script>
 
     <script src="app.js"></script>

@@ -39,7 +39,7 @@ body {
 
 #hero h1 {
   text-transform: uppercase;
-  animation: 2s anim-lineUp ease-out;
+  animation: 2s anim-lineUp ease-out 2;
   text-shadow: 5px 2px #ffffff43, 2px 4px #ffffff43, 3px 5px #ffffff43;
 }
 
@@ -109,3 +109,4 @@ body {
   white-space:nowrap;
 
 }
+
