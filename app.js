@@ -6,18 +6,16 @@
 // Image URL
 // Phone number
 
-function Student(stdName, stdBirth, stdGender, stdMajor, stdImg, stdPhone){
-    this.stdName = stdName;
-    this.stdBirth = stdBirth;
-    this.stdGender = stdGender;
-    this.stdMajor = stdMajor;
-    this.stdImg = stdImg;
-    this.stdPhone = stdPhone;
+function Student(stdName, stdBirth, stdGender, stdMajor, stdImg, stdPhone) {
+  this.stdName = stdName;
+  this.stdBirth = stdBirth;
+  this.stdGender = stdGender;
+  this.stdMajor = stdMajor;
+  this.stdImg = stdImg;
+  this.stdPhone = stdPhone;
 }
 
-
-
-let std; 
+let std;
 let studentArray = [];
 // let stdName;
 // let stdBirth;
@@ -28,7 +26,7 @@ let studentArray = [];
 // let stdGrade;
 
 let isCreated = true;
-
+let i = 0;
 // let tableHead;
 // let tableBody;
 // let table;
@@ -43,81 +41,68 @@ let student_name;
 
 const studentForm = document.getElementById("contactForm");
 
-
 studentForm.addEventListener("submit", (event) => {
-
     event.preventDefault();
-    std = new Student;
+    std = new Student();
 
-    if(isCreated) {
+    if (isCreated) {
+        isCreated = false;
+        h1 = document.createElement("h1");
+        h1.textContent = "Students Information";
+        h1.style.color = "black";
+        h1.style.fontWeight = "bold";
+        h1.textTransform = "capitalize";
+        main.prepend(h1);
 
-    isCreated = false;
-    h1 = document.createElement("h1");
-    h1.textContent = "Students Information";
-    h1.style.color = "black";
-    h1.style.fontWeight = "bold";
-    h1.textTransform = "capitalize";
-    main.prepend(h1);
+        // tableHead = document.createElement("thead");
 
-    // tableHead = document.createElement("thead");
+        // tableBody = document.createElement("tbody");
 
-    // tableBody = document.createElement("tbody");
+        // table = document.getElementById("stdTable");
 
-    // table = document.getElementById("stdTable");
+        // const tr = document.createElement("tr");
 
-    // const tr = document.createElement("tr");
+        // for (let i = 0; i < 5; i++){
+        //     const th = document.createElement("th");
+        //     th.textContent = arr[i];
+        //     tr.appendChild(th);
+        // }
 
+        // tableHead.appendChild(tr);
 
-    // for (let i = 0; i < 5; i++){
-    //     const th = document.createElement("th");
-    //     th.textContent = arr[i];
-    //     tr.appendChild(th);
-    // }
+        // table.appendChild(tableHead);
 
-    // tableHead.appendChild(tr);
+        // table.style.textTransform = "capitalize";
+     }
 
-    // table.appendChild(tableHead);
+        student_name = event.target.fullName.value.split(" ");
+        for (let i = 0; i < student_name.length; i++) {
+            student_name[i] =
+            student_name[i].charAt(0).toUpperCase() + student_name[i].slice(1);
+        }
 
+        std.stdName = student_name.join(" ");
 
-    // table.style.textTransform = "capitalize";
+        std.stdBirth = event.target.dateOfBirth.value;
 
+        std.stdGender = event.target.gender.value;
 
+        std.stdPhone = event.target.phoneNumber.value;
+
+        std.stdImg = event.target.img.value;
+
+        std.stdMajor = event.target.major.value;
+
+        studentArray.push(std);
+        localStorage.setItem("studentArray", JSON.stringify(studentArray));
+        render(studentArray);
+        studentForm.reset();
     }
+);
 
 
-    student_name = event.target.fullName.value.split(" ");
-    for (let i = 0; i < student_name.length; i++) {
-        student_name[i] = student_name[i].charAt(0).toUpperCase() + student_name[i].slice(1);
 
-    }
-
-    std.stdName = student_name.join(" ");
-
-    std.stdBirth = event.target.dateOfBirth.value;
-
-    std.stdGender = event.target.gender.value;
-
-    std.stdPhone = event.target.phoneNumber.value;
-
-    std.stdImg = event.target.img.value;
-
-    std.stdMajor = event.target.major.value;
-
-    save();
-
-    render(std.stdName, std.stdBirth, std.stdGender, std.stdMajor, std.stdImg, std.stdPhone );
-    studentForm.reset();
-
-    });
-
-
-function render(stdName, stdBirth, stdGender, stdMajor, stdImg, stdPhone ){
-    
-
-    // stdInfo = [stdName, stdBirth, stdGender, stdMajor, stdImg, stdPhone];
-
-    
-
+function render(studentArray) {
     let stdCard = document.createElement("div");
 
     stdCard.classList.add("card");
@@ -125,44 +110,38 @@ function render(stdName, stdBirth, stdGender, stdMajor, stdImg, stdPhone ){
     stdCard.style.backgroundColor = "white";
     stdCard.style.width = "18rem";
     stdCard.style.textTransform = "capitalize";
-    
+
     let imgCard = document.createElement("img");
-    
-    imgCard.classList.add("card-img-top","img-thumbnail");
-    
-    imgCard.setAttribute("src", stdImg);
+
+    imgCard.classList.add("card-img-top", "img-thumbnail");
+
+    imgCard.setAttribute("src", studentArray[i].stdImg);
     imgCard.style.border = "none";
 
     let bodyCard = document.createElement("div");
-    
+
     bodyCard.classList.add("card-body");
-    
-    let cardText = document.createElement("p")
+
+    let cardText = document.createElement("p");
     cardText.classList.add("card-text");
-    cardText.textContent = `Student Name: ${stdName}`;
-    
-    let cardText2 = document.createElement("p")
+    cardText.textContent = `Student Name: ${studentArray[i].stdName}`;
+
+    let cardText2 = document.createElement("p");
     cardText2.classList.add("card-text");
-    cardText2.textContent = `Date of Birth: ${stdBirth}`;
+    cardText2.textContent = `Date of Birth: ${studentArray[i].stdBirth}`;
 
-
-    
-    let cardText3 = document.createElement("p")
+    let cardText3 = document.createElement("p");
     cardText3.classList.add("card-text");
-    cardText3.textContent = `Gender: ${stdGender}`;
+    cardText3.textContent = `Gender: ${studentArray[i].stdGender}`;
 
-
-    let cardText4 = document.createElement("p")
+    let cardText4 = document.createElement("p");
     cardText4.classList.add("card-text");
-    cardText4.textContent = `Major: ${stdMajor}`;
+    cardText4.textContent = `Major: ${studentArray[i].stdMajor}`;
 
-
-    let cardText5 = document.createElement("p")
+    let cardText5 = document.createElement("p");
     cardText5.classList.add("card-text");
-    cardText5.textContent = `Phone: ${stdPhone}`;
+    cardText5.textContent = `Phone: ${studentArray[i].stdPhone}`;
 
-
-  
     stdCard.appendChild(imgCard);
     bodyCard.style.fontSize = "small";
     bodyCard.style.width = "max-content";
@@ -178,8 +157,12 @@ function render(stdName, stdBirth, stdGender, stdMajor, stdImg, stdPhone ){
     stdCard.appendChild(bodyCard);
     main.appendChild(stdCard);
 
-  
-    // const tr = document.createElement("tr"); 
+    i = i + 1;
+}
+
+    // localStorage.setItem('studentArray', JSON.stringify(studentArray));
+    // studentArray.pop();
+    // const tr = document.createElement("tr");
     // for (let i = 0; i < 5; i++){
     //     const td = document.createElement("td");
     //     td.textContent = stdInfo[i];
@@ -188,14 +171,9 @@ function render(stdName, stdBirth, stdGender, stdMajor, stdImg, stdPhone ){
     // }
     // table.appendChild(tableBody);
 
-
-}
-
-function save(){
-    studentArray.push(std);
-    localStorage.setItem("Students info.", JSON.stringify(studentArray));
-    // console.log(studentArray);
-}
-
+    if (localStorage.getItem("studentArray")) {
+        studentArray = JSON.parse(localStorage.getItem("studentArray"));
+        for (let i = 0; i < studentArray.length; i++) render(studentArray);
+    }
 
 // AWBGCE
